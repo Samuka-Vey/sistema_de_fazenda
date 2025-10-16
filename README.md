@@ -4,4 +4,3 @@
 
 * Marcos Samuel Cornelio Barros
 
-## Arquitetura de pastas
