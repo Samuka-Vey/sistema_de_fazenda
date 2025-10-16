@@ -3,4 +3,5 @@
 ## Integrante (s)
 
 * Marcos Samuel Cornelio Barros
+* João Pedro Aguiar Teixeira
 
