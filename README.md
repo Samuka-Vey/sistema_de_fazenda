@@ -3,3 +3,4 @@
 * Marcos Samuel Cornelio Barros [Matricula: 2025027554]
 * João Pedro Aguiar Teixeira [Matricula: 2025012506]
 * David de Carvalho Santos [Matrícula: 2025012373]
+* Bruno Vinicius dos Reis Souza [Matricula:2025034595] 
