@@ -5,15 +5,26 @@ import json
 from time import sleep
 from animals import register_animal
 import os
+
+
 def register(code_service):
     if code_service == 1:
         register_animal()
+    
+    
+           
     else:
         print("Opção inválida. Tente novamente.")
         sleep(1.5)
 
 
 def save_data_to_file(file_path, data):
+    '''
+    Save data to a JSON file.
+    Args:
+        file_path (str): The path to the JSON file.
+        data (dict): The data to be saved.
+    '''
     # Verifica se o arquivo existe
     if os.path.exists(file_path):
         # Ler os dados existentes
@@ -50,5 +61,7 @@ def generate_id(file_path):
     if not data:
         return 1
 
-    last_id = data[-1].get('id', 0)
+    last_id = data[-1].get('id', 1) 
     return last_id + 1
+
+
