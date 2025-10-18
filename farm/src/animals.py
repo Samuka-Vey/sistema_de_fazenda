@@ -2,9 +2,9 @@ import os
 from time import sleep
 from files import save_data_to_file, generate_id
 
+FILE_PATH = os.path.join("farm", "data", "animals.json")
 from utils.logs import ANIMAL_REGISTERED
 def register_animal():
-    file_path = os.path.join("farm", "data", "animals.json")
     
     print(ANIMAL_REGISTERED)
     
@@ -26,14 +26,14 @@ def register_animal():
             raise ValueError("Status inválido")
         
         animal_data = {
-            "id": generate_id(file_path),
+            "id": generate_id(FILE_PATH),
             "species": species,
             "age": age,
             "weight": weight,
             "status": status
         }
         
-        save_data_to_file(file_path, animal_data)
+        save_data_to_file(FILE_PATH, animal_data)
         print("\n Animal cadastrado com sucesso!")
         
     except ValueError as e:
@@ -43,3 +43,26 @@ def register_animal():
 
     sleep(1.5)
 
+
+def search_animal():
+    from files import load_data_from_file
+    animals = load_data_from_file(FILE_PATH)
+
+    search = input("Digite o ID ou nome do animal: ").strip().lower()
+    if not search:
+        print("Entrada inválida.")
+        return
+
+    encontrados = []
+    for animal in animals:
+        if str(animal["id"]) == search:
+            encontrados.append(animal)
+        elif search in animal["species"].lower():
+            encontrados.append(animal)
+
+    if encontrados:
+        print(f"\n{len(encontrados)} animal(is) encontrado(s):")
+        for a in encontrados:
+            print(f"ID: {a['id']} | Espécie: {a['species']} | Idade: {a['age']} | Peso: {a['weight']} | Status: {a['status']}")
+    else:
+        print("Nenhum animal encontrado.")
