@@ -1,5 +1,4 @@
 from time import sleep
-from animals import register_animal
 from utils.logs import WELCOME
 
 def show_menu():
@@ -28,7 +27,11 @@ def main():
             option = input("\nEscolha uma opção: ").strip()
             
             if option == "1":
+                from animals import register_animal
                 register_animal()
+            elif option == "2":
+                from inputs import register_input
+                register_input()
             elif option == "0":
                 print("\nEncerrando sistema...")
                 sleep(1)

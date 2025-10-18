@@ -3,7 +3,7 @@ import os
 from time import sleep
 from files import save_data_to_file, generate_id
 from utils.logs import INPUTS_REGISTERED
-def register_inputs():
+def register_input():
     file_path = os.path.join("farm", "data", "inputs.json")
 
     print(INPUTS_REGISTERED)

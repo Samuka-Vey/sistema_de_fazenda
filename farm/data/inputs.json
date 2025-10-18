@@ -5,5 +5,12 @@
         "quantity": 129.0,
         "unit": "sacos",
         "category": "seed"
+    },
+    {
+        "id": 2,
+        "name": "Milho",
+        "quantity": 100.0,
+        "unit": "kg",
+        "category": "medicine"
     }
 ]

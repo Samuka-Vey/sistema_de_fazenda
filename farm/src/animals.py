@@ -1,8 +1,8 @@
 import os
 from time import sleep
 from files import save_data_to_file, generate_id
-
 from utils.logs import ANIMAL_REGISTERED
+
 def register_animal():
     file_path = os.path.join("farm", "data", "animals.json")
     
