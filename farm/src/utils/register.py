@@ -15,6 +15,10 @@ def register(code_service):
     elif code_service == 2:
         register_inputs()
 
+    elif code_service == 4:
+        print("O programa está sendo encerrado.")
+        
+
     else:
         print("Opção inválida. Tente novamente.")
         sleep(1.5)
