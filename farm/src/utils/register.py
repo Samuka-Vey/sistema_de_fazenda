@@ -4,15 +4,17 @@ code service register: 1 - cadastrar animal 2 - Cadastrar plantação 3 - Cadast
 import json
 from time import sleep
 from animals import register_animal
+from inputs import register_inputs
 import os
 
 
 def register(code_service):
     if code_service == 1:
         register_animal()
-    
-    
-           
+
+    elif code_service == 2:
+        register_inputs()
+
     else:
         print("Opção inválida. Tente novamente.")
         sleep(1.5)
@@ -44,9 +46,8 @@ def save_data_to_file(file_path, data):
         json.dump(existing_data, file, ensure_ascii=False, indent=4)
 
 
-
 def generate_id(file_path):
- 
+
     data = []
 
     if os.path.exists(file_path):
@@ -61,7 +62,5 @@ def generate_id(file_path):
     if not data:
         return 1
 
-    last_id = data[-1].get('id', 1) 
+    last_id = data[-1].get('id', 1)
     return last_id + 1
-
-
