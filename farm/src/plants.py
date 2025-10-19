@@ -2,7 +2,14 @@ import os
 from time import sleep
 from files import save_data_to_file, generate_id
 from utils.logs import PLANTS_REGISTERED
+from datetime import datetime
 
+def validate_date_iso(dateinput):
+    try:
+        planting_date_obj = datetime.striptime(dateinput,'%d/%m/%Y')
+        return planting_date_obj.strftime('%Y/%m/%d')
+    except ValueError:
+        raise ValueError("A data deve ser no formato dd/mm/aaaa e ser uma data válida")
 
 def register_plants():
     file_path = os.path.join("farm", "data", "plants.json")
@@ -18,9 +25,9 @@ def register_plants():
         if area < 0:
             raise ValueError("Área plantada não pode ser negativa")
         
-        planting_date = (input("Digite a data do plantio (dd/mm/aaaa): ")) #Dúvida sobre string formato ISO
-        if planting_date <= 0:
-            raise ValueError("A data deve ser no formato dd/mm/aaaa")
+        planting_date = input("Digite a data do plantio (dd/mm/aaaa): ") #Dúvida sobre string formato ISO
+        planting_date_iso = validate_date_iso(planting_date)
+        
         
         harvest_date = (input("Digite a data estipulada para colheita (dd/mm/aaaa): "))
         if harvest_date <= 0:
@@ -34,7 +41,7 @@ def register_plants():
             "id": generate_id(file_path),
             "crop_type": crop_type,
             "area": area,
-            "planting_date": planting_date,
+            "planting_date": planting_date_iso,
             "harvest_date": harvest_date,
             "status": status
         }
