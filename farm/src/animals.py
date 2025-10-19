@@ -43,3 +43,29 @@ def register_animal():
 
     sleep(1.5)
 
+def read_animal():
+    from files import load_data_from_file
+    file_path = os.path.join("farm", "data", "animals.json")
+    
+    animals = load_data_from_file(file_path)
+    
+    search = input("Digite o id ou nome do animal: ")
+    
+    if not search:
+        print("Entrada inválida")
+        return
+    
+    find = []
+    
+    for animal in animals:
+        if str(animal['id']) == search:
+            find.append(animal)
+        elif search in animal['species'].lower():
+            find.append(animal) 
+            
+    if find:
+        print(f'\n{len(find)} animal(is) encontrado(s):')
+        for a in find:
+            print(f"ID: {a['id']} | Espécie: {a['species']} | Idade: {a['age']} | Peso: {a['weight']} | Status: {a['status']}")
+    else:
+        print("Nenhum animal encontrado.")

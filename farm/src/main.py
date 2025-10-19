@@ -13,9 +13,10 @@ def show_menu():
     print("[4] Listar Animais")
     print("[5] Listar Plantações")
     print("[6] Listar Insumos")
-    print("[7] Registrar Movimentação")
-    print("[8] Gerar Relatórios")
-    print("[9] Pesquisar Registro")
+    print("[7] Atualizar Registros")
+    print("[8] Registrar Movimentação")
+    print("[9] Gerar Relatórios")
+    print("[10] Pesquisar Registro")
     print("[0] Sair")
     print("="*70)
 
@@ -30,8 +31,14 @@ def main():
                 from animals import register_animal
                 register_animal()
             elif option == "2":
+                from plants import register_plants
+                register_plants()
+            elif option == "3":
                 from inputs import register_input
                 register_input()
+            elif option == "4":
+                from animals import read_animal
+                read_animal()
             elif option == "0":
                 print("\nEncerrando sistema...")
                 sleep(1)

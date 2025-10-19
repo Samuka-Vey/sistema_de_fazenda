@@ -1,7 +1,6 @@
 import os
 from time import sleep
 from files import save_data_to_file, generate_id
-from utils.logs import PLANTS_REGISTERED
 from datetime import datetime, timedelta
 
 def validate_date_iso(dateinput):
@@ -12,10 +11,12 @@ def validate_date_iso(dateinput):
     except ValueError:
         raise ValueError("A data deve ser no formato dd/mm/aaaa e ser uma data válida")
 
+
+
+
 def register_plants():
     file_path = os.path.join("farm", "data", "plants.json")
     
-    print(PLANTS_REGISTERED)
     
     try:
         crop_type = input("Digite a cultura plantada: ").strip()

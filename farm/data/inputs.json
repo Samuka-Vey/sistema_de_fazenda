@@ -12,5 +12,19 @@
         "quantity": 100.0,
         "unit": "kg",
         "category": "medicine"
+    },
+    {
+        "id": 3,
+        "name": "Milho",
+        "quantity": 100.0,
+        "unit": "saco",
+        "category": "seed"
+    },
+    {
+        "id": 4,
+        "name": "Tapioca",
+        "quantity": 300.0,
+        "unit": "sacos",
+        "category": "medicine"
     }
 ]

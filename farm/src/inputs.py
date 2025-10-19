@@ -3,18 +3,17 @@ import os
 from time import sleep
 from files import save_data_to_file, generate_id
 from utils.logs import INPUTS_REGISTERED
+
 def register_input():
     file_path = os.path.join("farm", "data", "inputs.json")
 
     print(INPUTS_REGISTERED)
 
-
-    try:
-       
-        
+    try: 
+    
         name = str(input("Digite o nome do insumo: ")).strip()
-        
         quantity = float(input("Digite a quantidade disponivel no estoque: "))
+        
         if quantity <= 0:
             raise ValueError("a quantidade disponivel no estoque é menor que 0 ?")
         
