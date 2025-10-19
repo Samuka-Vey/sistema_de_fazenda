@@ -2,12 +2,13 @@ import os
 from time import sleep
 from files import save_data_to_file, generate_id
 from utils.logs import PLANTS_REGISTERED
-from datetime import datetime
+from datetime import datetime, timedelta
 
 def validate_date_iso(dateinput):
     try:
-        planting_date_obj = datetime.striptime(dateinput,'%d/%m/%Y')
-        return planting_date_obj.strftime('%Y/%m/%d')
+        
+        planting_date_obj = datetime.strptime(dateinput, '%d/%m/%Y')
+        return planting_date_obj.strftime('%Y-%m-%d')
     except ValueError:
         raise ValueError("A data deve ser no formato dd/mm/aaaa e ser uma data válida")
 
@@ -25,16 +26,24 @@ def register_plants():
         if area < 0:
             raise ValueError("Área plantada não pode ser negativa")
         
-        planting_date = input("Digite a data do plantio (dd/mm/aaaa): ") #Dúvida sobre string formato ISO
+        planting_date = input("Digite a data do plantio (dd/mm/aaaa): ")
         planting_date_iso = validate_date_iso(planting_date)
         
-        
-        harvest_date = (input("Digite a data estipulada para colheita (dd/mm/aaaa): "))
-        if harvest_date <= 0:
-            raise ValueError("A data deve ser no formato dd/mm/aaaa")
+        planting_date_obj = datetime.strptime(planting_date_iso, "%Y-%m-%d").date() # Conversão para objeto date para realizar cálculos
+ 
+        days_harvest = {
+            "milho": 120,
+            "soja": 110,
+            "arroz": 100,
+            "hortaliças": 30
+        }
+        days_until_harvest = days_harvest.get(crop_type.lower(), 90)
+        harvest_date_obj = planting_date_obj + timedelta(days=days_until_harvest)
+
+        harvest_date_iso = harvest_date_obj.isoformat() # Conversão para ISO
         
         status = input("Digite o status da cultura [planted/harvested/rotated/inactive]: ").strip().lower()
-        if status not in ["planted","harvested","rotated","inactive"]: # se o status for diferente dessas opções retorna erro
+        if status not in ["planted","harvested","rotated","inactive"]:
             raise ValueError("Status inválido")
         
         plants_data = {
@@ -42,16 +51,16 @@ def register_plants():
             "crop_type": crop_type,
             "area": area,
             "planting_date": planting_date_iso,
-            "harvest_date": harvest_date,
+            "harvest_date": harvest_date_iso,
             "status": status
         }
         
         save_data_to_file(file_path, plants_data)
-        print("\n Cultura de planta cadastrada com sucesso!")
+        print("\nCultura de planta cadastrada com sucesso!")
         
     except ValueError as e:
-        print(f"\n Erro: {e}")
+        print(f"\nErro: {e}")
     except Exception as e:
-        print(f"\n Erro inesperado: {e}")
+        print(f"\nErro inesperado: {e}")
 
     sleep(1.5)
