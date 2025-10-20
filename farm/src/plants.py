@@ -12,8 +12,6 @@ def validate_date_iso(dateinput):
         raise ValueError("A data deve ser no formato dd/mm/aaaa e ser uma data válida")
 
 
-
-
 def register_plants():
     file_path = os.path.join("farm", "data", "plants.json")
     
@@ -65,3 +63,26 @@ def register_plants():
         print(f"\nErro inesperado: {e}")
 
     sleep(1.5)
+
+
+def list_plants():
+    from files import load_data_from_file
+    file_path = os.path.join("farm", "data", "plants.json")
+    
+    plants = load_data_from_file(file_path)
+    
+    if not plants:
+        print("Nenhuma plantação cadastrada.")
+        return
+    
+    print("\nPlantações Cadastradas:")
+    for plant in plants:
+        print(f"ID: {plant['id']}")
+        print(f"Cultura: {plant['crop_type']}")
+        print(f"Área (ha): {plant['area']}")
+        print(f"Data do Plantio: {plant['planting_date']}")
+        print(f"Data da Colheita: {plant['harvest_date']}")
+        print(f"Status: {plant['status']}")
+        print("-"*30)
+    
+    sleep(2)

@@ -69,3 +69,22 @@ def read_animal():
             print(f"ID: {a['id']} | Espécie: {a['species']} | Idade: {a['age']} | Peso: {a['weight']} | Status: {a['status']}")
     else:
         print("Nenhum animal encontrado.")
+def list_animals():
+    from files import load_data_from_file
+    file_path = os.path.join("farm", "data", "animals.json")
+    
+    animals = load_data_from_file(file_path)
+    
+    if not animals:
+        print("\n Nenhum animal cadastrado.")
+    else:
+        print("\n Lista de Animais Cadastrados:\n")
+        for animal in animals:
+            print(f"ID: {animal['id']}")
+            print(f"Espécie: {animal['species']}")
+            print(f"Idade: {animal['age']} anos")
+            print(f"Peso: {animal['weight']} kg")
+            print(f"Status: {animal['status']}")
+            print("-"*30)
+    
+    sleep(1.5)

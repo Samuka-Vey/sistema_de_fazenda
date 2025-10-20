@@ -45,3 +45,21 @@ def register_input():
 
     sleep(1.5)
 
+def list_inputs():
+    from files import load_data_from_file
+    file_path = os.path.join("farm", "data", "inputs.json")
+    
+    inputs = load_data_from_file(file_path)
+    
+    if not inputs:
+        print("\n Nenhum insumo cadastrado.")
+    else:
+        print("\n Lista de Insumos Cadastrados:\n")
+        for inp in inputs:
+            print(f"ID: {inp['id']}")
+            print(f"Nome: {inp['name']}")
+            print(f"Quantidade em Estoque: {inp['quantity']} {inp['unit']}")
+            print(f"Categoria: {inp['category']}")
+            print("-"*30)
+    
+    sleep(1.5)
