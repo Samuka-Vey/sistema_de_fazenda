@@ -1,6 +1,7 @@
 from time import sleep
 from utils.logs import WELCOME
 
+
 def show_menu():
     print("="*70)
 
@@ -20,13 +21,14 @@ def show_menu():
     print("[0] Sair")
     print("="*70)
 
+
 def main():
     while True:
         show_menu()
-        
+
         try:
             option = input("\nEscolha uma opção: ").strip()
-            
+
             if option == "1":
                 from animals import register_animal
                 register_animal()
@@ -34,11 +36,16 @@ def main():
                 from plants import register_plants
                 register_plants()
             elif option == "3":
-                from inputs import register_input
+                from inputs.inputs import register_input
                 register_input()
             elif option == "4":
                 from animals import read_animal
                 read_animal()
+            elif option == "6":
+                from inputs.stock_control import read_inputs
+                from inputs.stock_control import list_inputs
+                list_inputs()
+                read_inputs()
             elif option == "0":
                 print("\nEncerrando sistema...")
                 sleep(1)
@@ -46,13 +53,14 @@ def main():
             else:
                 print("\n Opção inválida!")
                 sleep(1)
-                
+
         except KeyboardInterrupt:
             print("\nSistema interrompido pelo usuário.")
             break
         except Exception as e:
             print(f"\n Erro: {e}")
             sleep(1.5)
+
 
 if __name__ == "__main__":
     main()
