@@ -37,8 +37,20 @@ def main():
                 from inputs import register_input
                 register_input()
             elif option == "4":
-                from animals import read_animal
-                read_animal()
+                from animals import list_animals
+                list_animals()
+            elif option == "5":
+                from plants import list_plants
+                list_plants()
+            elif option == "6":
+                from inputs import list_inputs
+                list_inputs()
+            elif option == "10":
+                print("\n [1] Animal \n [2] Plantações \n [3] Insumos\n")
+                aux = int(input("Digite a opção para pesquisa: "))
+                if aux == 1:
+                    from animals import read_animal
+                    read_animal()
             elif option == "0":
                 print("\nEncerrando sistema...")
                 sleep(1)
