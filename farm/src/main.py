@@ -34,7 +34,7 @@ def main():
                 from plants import register_plants
                 register_plants()
             elif option == "3":
-                from inputs import register_input
+                from farm.src.inputs.inputs import register_input
                 register_input()
             elif option == "4":
                 from animals import list_animals
@@ -43,8 +43,14 @@ def main():
                 from plants import list_plants
                 list_plants()
             elif option == "6":
-                from inputs import list_inputs
+                from inputs.inputs import list_inputs
+                from inputs.stock_control import read_inputs
                 list_inputs()
+                read_inputs()
+                from inputs.stock_control import read_inputs
+                read_inputs()
+                # list_inputs()
+
             elif option == "10":
                 print("\n [1] Animal \n [2] Plantações \n [3] Insumos\n")
                 aux = int(input("Digite a opção para pesquisa: "))
