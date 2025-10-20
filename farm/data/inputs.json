@@ -26,5 +26,12 @@
         "quantity": 300.0,
         "unit": "sacos",
         "category": "medicine"
+    },
+    {
+        "id": 5,
+        "name": "batatatinha quando nasce",
+        "quantity": 23.0,
+        "unit": "sacos",
+        "category": "seed"
     }
 ]

@@ -1,6 +1,7 @@
 from time import sleep
 from utils.logs import WELCOME
 
+
 def show_menu():
     print("="*70)
 
@@ -34,11 +35,16 @@ def main():
                 from plants import register_plants
                 register_plants()
             elif option == "3":
-                from inputs import register_input
+                from inputs.inputs import register_input
                 register_input()
             elif option == "4":
                 from animals import read_animal
                 read_animal()
+            elif option == "6":
+                from inputs.stock_control import read_inputs
+                from inputs.stock_control import list_inputs
+                list_inputs()
+                read_inputs()
             elif option == "0":
                 print("\nEncerrando sistema...")
                 sleep(1)
