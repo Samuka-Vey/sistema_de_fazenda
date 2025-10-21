@@ -6,9 +6,8 @@ def show_menu():
 
     print(WELCOME)
 
-    print("="*70)
-    print("\n[1] Cadastrar Animal")
-    print("[2] Cadastrar Plantação")
+    print("="*70) 
+    print("[2] Cadastrar Plantação") 
     print("[3] Cadastrar Insumo")
     print("[4] Listar Animais")
     print("[5] Listar Plantações")
@@ -50,6 +49,10 @@ def main():
             elif option == "7":  
                 from animals import update_animal
                 update_animal()
+            elif option == "8":
+                from movements.moviments import menu_movements
+                menu_movements()
+            
             elif option == "10":
                 print("\n [1] Animal \n [2] Plantações \n [3] Insumos\n")
                 aux = int(input("Digite a opção para pesquisa: "))
