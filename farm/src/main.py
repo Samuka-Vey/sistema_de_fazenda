@@ -44,12 +44,9 @@ def main():
                 list_plants()
             elif option == "6":
                 from inputs.inputs import list_inputs
-                from inputs.stock_control import read_inputs
+                from inputs.stock_control import control_stock
                 list_inputs()
-                read_inputs()
-                from inputs.stock_control import read_inputs
-                read_inputs()
-                # list_inputs()
+                control_stock()
 
             elif option == "10":
                 print("\n [1] Animal \n [2] Plantações \n [3] Insumos\n")
@@ -57,6 +54,10 @@ def main():
                 if aux == 1:
                     from animals import read_animal
                     read_animal()
+                # elif aux == 2:
+                elif aux == 3:
+                    from inputs.stock_control import read_inputs
+                    read_inputs()
             elif option == "0":
                 print("\nEncerrando sistema...")
                 sleep(1)

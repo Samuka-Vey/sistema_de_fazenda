@@ -39,19 +39,20 @@ def enter_inputs():
 
     inputs = load_data_from_file(file_path)
 
-    id_entering = input("Digite o id no insumo que deseja modificar")
+    id_entering = int(input("Digite o id no insumo que deseja modificar: ").strip())
 
     entering = float(input("Quanto deseja adicionar?: "))
 
     for enter in inputs:
         if (enter['id']) == id_entering:
             enter["quantity"] = enter["quantity"] + entering
-
             with open(file_path, "w", encoding="utf-8") as file:
                 json.dump(inputs, file ,ensure_ascii=False, indent= 4)
                 break
-        else:
-            print("Insumo não encontrado")
+
+    else:
+        print("Insumo não encontrado")
+            
 
 
 def removal_inputs():
@@ -59,33 +60,39 @@ def removal_inputs():
 
     inputs = load_data_from_file(file_path)
 
-    id_removing  = input("Digite o id no insumo que deseja modificar")
-    removing = input("Quanto deseja remover?: ")
+    id_removing  = int(input("Digite o id no insumo que deseja modificar: ").strip())
+
+    removing = float(input("Quanto deseja remover?: "))
+    
 
     for enter in inputs:
         if (enter["id"]) == id_removing:
+            if removing > enter["quantity"]:
+                print("Erro: quantidade maior que o estoque disponível.")
+                return
             enter["quantity"] = enter["quantity"] - removing
             with open(file_path, "w", encoding="utf-8") as file:
-                json.dump(inputs, file , ensure_ascii=8, indent=4)
+                json.dump(inputs, file , ensure_ascii=False, indent=4)
                 break
-        else:
-            print("Insumo não encontrado")
+    else:
+        print("Insumo não encontrado")
+            
 
         
 def control_stock():
     file_path = os.path.join("farm","data","inputs.json")
     inputs = load_data_from_file(file_path)
 
-    print("Qual operação deseja fazer?" \
-    "1. Adicionar entrada de insumo" \
-    "2. Retirar insumos do estoque" \
+    print("Qual operação deseja fazer?\n" 
+    "1. Adicionar entrada de insumo\n" \
+    "2. Retirar insumos do estoque\n" \
     "")
 
     operation = input("Qual operação será realizada?: ")
 
     if operation == "1":
-        enter_inputs
+        enter_inputs()
     elif operation == "2":
-        removal_inputs
+        removal_inputs()
         
 

@@ -2,28 +2,28 @@
     {
         "id": 1,
         "name": "batata",
-        "quantity": 129.0,
+        "quantity": 309039103109430.9,
         "unit": "sacos",
         "category": "seed"
     },
     {
         "id": 2,
         "name": "Milho",
-        "quantity": 100.0,
+        "quantity": 123223.0,
         "unit": "kg",
         "category": "medicine"
     },
     {
         "id": 3,
         "name": "Milho",
-        "quantity": 100.0,
+        "quantity": 50.0,
         "unit": "saco",
         "category": "seed"
     },
     {
         "id": 4,
         "name": "Tapioca",
-        "quantity": 300.0,
+        "quantity": 8.164860999099994e+16,
         "unit": "sacos",
         "category": "medicine"
     }
