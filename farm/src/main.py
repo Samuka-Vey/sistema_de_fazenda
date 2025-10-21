@@ -54,7 +54,9 @@ def main():
                 if aux == 1:
                     from animals import read_animal
                     read_animal()
-                # elif aux == 2:
+                elif aux == 2:
+                    from plants import read_plants
+                    read_plants()
                 elif aux == 3:
                     from inputs.stock_control import read_inputs
                     read_inputs()
