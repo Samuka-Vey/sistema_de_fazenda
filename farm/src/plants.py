@@ -10,8 +10,6 @@ def validate_date_iso(dateinput):
         return planting_date_obj.strftime('%Y-%m-%d')
     except ValueError:
         raise ValueError("A data deve ser no formato dd/mm/aaaa e ser uma data válida")
-
-
 def register_plants():
     file_path = os.path.join("farm", "data", "plants.json")
     
@@ -63,8 +61,39 @@ def register_plants():
         print(f"\nErro inesperado: {e}")
 
     sleep(1.5)
+def read_plants():
+    from files import load_data_from_file 
+    file_path= os.path.join("farm","data","plants.json") 
+    plants=load_data_from_file(file_path) 
 
+    search = input("digite o id ou nome da plantação: ")
 
+    if not search:
+        print("entrada invalida") 
+        return 
+    
+    find = [] 
+
+    for plant in plants:
+        if str(plant['id']) == search: 
+            find.append(plant) 
+        elif search in plant ['crop_type'].lower(): 
+            find.append(plant) 
+
+    if not find:
+        print("\nNenhuma plantação encontrada.")
+    else:
+        print("\nLista de plantações encontradas:\n")
+        for plant in find:
+                print(f"id: {plant['id']} ")
+                print(f"tipo_de_colheita: {plant['crop_type']}")
+                print(f"Area: {plant['area']} hectare")
+                print(f"data_de_plantio: {plant['planting_date']}")
+                print(f"data_de_colheita: {plant['harvest_date']}")
+                print(f"situação: {plant['status']}")
+                print("-"*30)
+
+                sleep(1.5)
 def list_plants():
     from files import load_data_from_file
     file_path = os.path.join("farm", "data", "plants.json")
