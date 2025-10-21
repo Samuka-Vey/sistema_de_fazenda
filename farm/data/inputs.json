@@ -16,7 +16,7 @@
     {
         "id": 3,
         "name": "Milho",
-        "quantity": 50.0,
+        "quantity": 100.0,
         "unit": "saco",
         "category": "seed"
     },
