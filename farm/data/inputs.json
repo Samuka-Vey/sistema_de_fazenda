@@ -16,14 +16,14 @@
     {
         "id": 3,
         "name": "Milho",
-        "quantity": 100.0,
+        "quantity": 124.0,
         "unit": "saco",
         "category": "seed"
     },
     {
         "id": 4,
         "name": "Tapioca",
-        "quantity": 8.164860999099994e+16,
+        "quantity": 8.154860999099995e+16,
         "unit": "sacos",
         "category": "medicine"
     }

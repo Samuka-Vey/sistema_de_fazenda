@@ -27,6 +27,10 @@ def load_data_from_file(file_path):
     except (json.JSONDecodeError, IOError):
         return []
 
+def overwrite_data_in_file(file_path, data):
+    with open(file_path, 'w', encoding='utf-8') as file:
+        json.dump(data, file, ensure_ascii=False, indent=4)
+        
 def generate_id(file_path):
     data = load_data_from_file(file_path)
     if not data:

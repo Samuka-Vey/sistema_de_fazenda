@@ -9,7 +9,7 @@ def validate_date_iso(dateinput):
         planting_date_obj = datetime.strptime(dateinput, '%d/%m/%Y')
         return planting_date_obj.strftime('%Y-%m-%d')
     except ValueError:
-        raise ValueError("A data deve ser no formato dd/mm/aaaa e ser uma data válida")
+        raise ValueError("A data deve ser no formato dd/mm/aaaa e ser uma data válida")   
 def register_plants():
     file_path = os.path.join("farm", "data", "plants.json")
     

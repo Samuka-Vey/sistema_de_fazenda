@@ -42,7 +42,6 @@ def register_animal():
         print(f"\n Erro inesperado: {e}")
 
     sleep(1.5)
-
 def read_animal():
     from files import load_data_from_file
     file_path = os.path.join("farm", "data", "animals.json")
@@ -86,5 +85,48 @@ def list_animals():
             print(f"Peso: {animal['weight']} kg")
             print(f"Status: {animal['status']}")
             print("-"*30)
+    
+    sleep(1.5)
+def update_animal():
+    from files import load_data_from_file, overwrite_data_in_file
+    file_path = os.path.join("farm", "data", "animals.json")
+    
+    animals = load_data_from_file(file_path)
+    
+    try:
+        animal_id = int(input("Digite o ID do animal que deseja atualizar: "))
+        
+        for animal in animals:
+            if animal['id'] == animal_id:
+                print(f"Atualizando dados do animal ID {animal_id}:")
+                
+                new_species = input(f"Espécie ({animal['species']}): ").strip()
+                if new_species:
+                    animal['species'] = new_species
+                
+                new_age = input(f"Idade ({animal['age']}): ").strip()
+                if new_age:
+                    animal['age'] = float(new_age)
+                
+                new_weight = input(f"Peso ({animal['weight']}): ").strip()
+                if new_weight:
+                    animal['weight'] = float(new_weight)
+                
+                new_status = input(f"Status ({animal['status']}): ").strip().lower()
+                if new_status in ["active", "sold", "dead"]:
+                    animal['status'] = new_status
+                elif new_status:
+                    raise ValueError("Status inválido")
+                
+                overwrite_data_in_file(file_path, animals)
+                print("Dados do animal atualizados com sucesso!")
+                break
+        else:
+            print("Animal com o ID fornecido não encontrado.")
+    
+    except ValueError as e:
+        print(f"\n Erro: {e}")
+    except Exception as e:
+        print(f"\n Erro inesperado: {e}")
     
     sleep(1.5)

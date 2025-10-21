@@ -58,7 +58,7 @@ def list_inputs():
         for inp in inputs:
             print(f"ID: {inp['id']}")
             print(f"Nome: {inp['name']}")
-            print(f"Quantidade em Estoque: {inp['quantity']} {inp['unit']}")
+            print(f"Quantidade em Estoque: {inp['quantity']:.1f} {inp['unit']}")
             print(f"Categoria: {inp['category']}")
             print("-"*30)
     
