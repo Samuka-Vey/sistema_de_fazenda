@@ -13,7 +13,7 @@ def show_menu():
     print("[4] Listar Animais")
     print("[5] Listar Plantações")
     print("[6] Listar Insumos")
-    print("[7] Atualizar Registros")
+    print("[7] Atualizar registros de animais")
     print("[8] Registrar Movimentação")
     print("[9] Gerar Relatórios")
     print("[10] Pesquisar Registro")
@@ -47,12 +47,9 @@ def main():
                 from inputs.stock_control import control_stock
                 list_inputs()
                 control_stock()
-            elif option == "7":
-                print("\n [1] Animal \n [2] Plantações \n [3] Insumos\n")
-                aux = int(input("Digite a opção para atualização: "))
-                if aux == 1:
-                    from animals import update_animal
-                    update_animal()
+            elif option == "7":  
+                from animals import update_animal
+                update_animal()
             elif option == "10":
                 print("\n [1] Animal \n [2] Plantações \n [3] Insumos\n")
                 aux = int(input("Digite a opção para pesquisa: "))
