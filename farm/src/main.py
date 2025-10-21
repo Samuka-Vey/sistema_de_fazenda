@@ -51,6 +51,9 @@ def main():
                 if aux == 1:
                     from animals import read_animal
                     read_animal()
+                if aux == 2:
+                    from plants import list_plants
+                    list_plants()
             elif option == "0":
                 print("\nEncerrando sistema...")
                 sleep(1)

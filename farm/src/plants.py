@@ -65,24 +65,48 @@ def register_plants():
     sleep(1.5)
 
 
-def list_plants():
-    from files import load_data_from_file
-    file_path = os.path.join("farm", "data", "plants.json")
+def read_plants():
+    from files import load_data_from_file 
+    file_path= os.path.join("farm","data","plants.json") 
+    plants=load_data_from_file(file_path) 
+
+    search=input("digite o id ou nome da plantação") 
+
+    if not search:
+        print("entrada invalida") 
+        return 
     
-    plants = load_data_from_file(file_path)
-    
-    if not plants:
-        print("Nenhuma plantação cadastrada.")
-        return
-    
-    print("\nPlantações Cadastradas:")
+    find = [] 
+
     for plant in plants:
-        print(f"ID: {plant['id']}")
-        print(f"Cultura: {plant['crop_type']}")
-        print(f"Área (ha): {plant['area']}")
-        print(f"Data do Plantio: {plant['planting_date']}")
-        print(f"Data da Colheita: {plant['harvest_date']}")
-        print(f"Status: {plant['status']}")
-        print("-"*30)
-    
-    sleep(2)
+        if str(plant['id']) == search: 
+            find.append(plant) 
+        elif search in plant ['crop_type'].lower(): 
+            find.append(plant) 
+
+        if find: 
+           print(f'\n{len(find)} plant(is) encontrado(s):')  
+           for a in find: 
+            print(f"ID: {a['id']} | tipo_de_colheita: {a['crop_type']} | Area: {a['area']} | data_de_plantio: {a['planting_date']} | Data_de_colheita: {a['harvest_date']} | situação {a['status']}") 
+        else: 
+            print("nenhuma plantação encontrada") 
+        def list_plants(): 
+            from files import load_data_from_file 
+            file_path= os.path.join("farm","data","plants.json") 
+
+        plants= load_data_from_file(file_path) 
+
+        if not plants:
+            print("/n Nenhuma plantação cadastrada.") 
+        else:
+            print("/n lista de plantações cadastradas:/n") 
+            for plant in plants: 
+                print(f"id: {plant['id']} ") 
+                print(f"tipo_de_colheita: {plant['crop_type']}") 
+                print(f"Area: {['area']} hectare") 
+                print(f"data_de_plantio: {['planting_date']}") 
+                print(f"data_de_colheita: {['harvest_date']}") 
+                print(f"situação: {['status']}") 
+                print("-"*30) 
+
+                sleep(1.5)
