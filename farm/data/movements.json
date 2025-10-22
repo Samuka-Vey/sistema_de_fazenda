@@ -35,5 +35,25 @@
         "area": 1000.0,
         "buyer": null,
         "price": null
+    },
+    {
+        "type": "insumo",
+        "id": 1,
+        "description_and_use": "pq é um numero bom",
+        "action": "entrada",
+        "quantity": 12.2,
+        "unit": "sacos",
+        "category": "seed"
+    },
+    {
+        "type": "insumo",
+        "id": 1,
+        "name": "batata",
+        "description_and_use": "bom numero dog",
+        "date": "2025-10-22 19:48:24",
+        "action": "entrada",
+        "quantity": 2123.3,
+        "unit": "sacos",
+        "category": "seed"
     }
 ]
