@@ -34,6 +34,7 @@ farm/
 │   ├── inputs/
 │   │   ├── inputs.py          
 │   │   └── manage_inputs.py   
+    |   └── stock_control.py 
 │   │
 │   ├── movements/
 │   │   ├── movements.py       
