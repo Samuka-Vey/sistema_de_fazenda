@@ -25,5 +25,15 @@
         "description": "Vendi para toin",
         "buyer": "Pedro",
         "value": 200000.0
+    },
+    {
+        "type": "planta",
+        "planta_id": 1,
+        "date": "2025-10-22 18:33:40",
+        "status": "planted",
+        "description": "OVO",
+        "area": 1000.0,
+        "buyer": null,
+        "price": null
     }
 ]

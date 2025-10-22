@@ -18,5 +18,5 @@ ANIMAL_REGISTERED = r"""
 INPUTS_REGISTERED = r"""
 
 Cadastramento Plantação
-
+1
 """
