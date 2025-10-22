@@ -8,25 +8,22 @@ Bruno Vinicius dos Reis Souza [Matricula:2025034595]
 '''
 
 from time import sleep
-from utils.logs import WELCOME
-
+from utils.message import WELCOME
+from utils.terminal import bars_line, clear_terminal
 def show_menu():
-    print("="*70)
-
+    clear_terminal()
+    bars_line("*", 66)
     print(WELCOME)
 
-    print("="*70) 
-    print("[2] Cadastrar Plantação") 
-    print("[3] Cadastrar Insumo")
-    print("[4] Listar Animais")
-    print("[5] Listar Plantações")
-    print("[6] Listar Insumos")
-    print("[7] Atualizar registros de animais")
-    print("[8] Registrar Movimentação")
-    print("[9] Gerar Relatórios")
-    print("[10] Pesquisar Registro")
+    bars_line("-", 66)
+    print("[1] Gerenciar Animais")
+    print("[2] Gerenciar Plantações")
+    print("[3] Gerenciar Insumos")
+    print("[4] Registrar Movimentação")
+    print("[5] Gerar Relatórios")
+    print("[6] Pesquisar Registro")
     print("[0] Sair")
-    print("="*70)
+    bars_line("-", 66)
 
 def main():
     while True:
@@ -36,44 +33,20 @@ def main():
             option = input("\nEscolha uma opção: ").strip()
             
             if option == "1":
-                from animals import register_animal
-                register_animal()
+                from animals.animals import show_choice_animals
+                show_choice_animals()
             elif option == "2":
-                from plants import register_plants
-                register_plants()
+                from plants.plants import show_choice_plants
+                show_choice_plants()
             elif option == "3":
-                from inputs.inputs import register_input
-                register_input()
-            elif option == "4":
-                from animals import list_animals
-                list_animals()
-            elif option == "5":
-                from plants import list_plants
-                list_plants()
-            elif option == "6":
-                from inputs.inputs import list_inputs
-                from inputs.stock_control import control_stock
-                list_inputs()
-                control_stock()
-            elif option == "7":  
-                from animals import update_animal
-                update_animal()
-            elif option == "8":
+                from inputs.inputs import show_choice_inputs
+                show_choice_inputs()
+            elif option == "4": # Estamos fazendo agora
                 from movements.moviments import menu_movements
                 menu_movements()
-            
-            elif option == "10":
-                print("\n [1] Animal \n [2] Plantações \n [3] Insumos\n")
-                aux = int(input("Digite a opção para pesquisa: "))
-                if aux == 1:
-                    from animals import read_animal
-                    read_animal()
-                elif aux == 2:
-                    from plants import read_plants
-                    read_plants()
-                elif aux == 3:
-                    from inputs.stock_control import read_inputs
-                    read_inputs()
+           
+            elif option == "5": # O que ainda falta a gente fazer
+                ...
             elif option == "0":
                 print("\nEncerrando sistema...")
                 sleep(1)

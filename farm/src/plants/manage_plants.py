@@ -2,7 +2,6 @@ import os
 from time import sleep
 from files import save_data_to_file, generate_id
 from datetime import datetime, timedelta
-
 def validate_date_iso(dateinput):
     try:
         
@@ -54,7 +53,8 @@ def register_plants():
         
         save_data_to_file(file_path, plants_data)
         print("\nCultura de planta cadastrada com sucesso!")
-        
+
+
     except ValueError as e:
         print(f"\nErro: {e}")
     except Exception as e:
@@ -92,7 +92,6 @@ def read_plants():
                 print(f"data_de_colheita: {plant['harvest_date']}")
                 print(f"situação: {plant['status']}")
                 print("-"*30)
-
                 sleep(1.5)
 def list_plants():
     from files import load_data_from_file
@@ -115,3 +114,4 @@ def list_plants():
         print("-"*30)
     
     sleep(2)
+   

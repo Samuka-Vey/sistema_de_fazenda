@@ -1,7 +1,8 @@
 import os
 from time import sleep
 from files import save_data_to_file, generate_id
-from utils.logs import ANIMAL_REGISTERED
+from utils.message import ANIMAL_REGISTERED
+
 
 def register_animal():
     file_path = os.path.join("farm", "data", "animals.json")
@@ -45,29 +46,26 @@ def register_animal():
 def read_animal():
     from files import load_data_from_file
     file_path = os.path.join("farm", "data", "animals.json")
-    
     animals = load_data_from_file(file_path)
-    
     search = input("Digite o id ou nome do animal: ")
-    
     if not search:
         print("Entrada inválida")
         return
-    
     find = []
-    
+    search_lower = search.lower()  
     for animal in animals:
         if str(animal['id']) == search:
             find.append(animal)
-        elif search in animal['species'].lower():
-            find.append(animal) 
-            
+        elif search_lower in animal['species'].lower():
+            find.append(animal)
     if find:
         print(f'\n{len(find)} animal(is) encontrado(s):')
         for a in find:
             print(f"ID: {a['id']} | Espécie: {a['species']} | Idade: {a['age']} | Peso: {a['weight']} | Status: {a['status']}")
+        
     else:
         print("Nenhum animal encontrado.")
+        
 def list_animals():
     from files import load_data_from_file
     file_path = os.path.join("farm", "data", "animals.json")
@@ -87,7 +85,7 @@ def list_animals():
             print("-"*30)
     
     sleep(1.5)
-def update_animal():
+def update_animal():    
     from files import load_data_from_file, overwrite_data_in_file
     file_path = os.path.join("farm", "data", "animals.json")
     
@@ -120,6 +118,34 @@ def update_animal():
                 
                 overwrite_data_in_file(file_path, animals)
                 print("Dados do animal atualizados com sucesso!")
+                break
+        else:
+            print("Animal com o ID fornecido não encontrado.")
+    
+    except ValueError as e:
+        print(f"\n Erro: {e}")
+    except Exception as e:
+        print(f"\n Erro inesperado: {e}")
+    
+    sleep(1.5)
+def delete_animal():
+    from files import load_data_from_file, overwrite_data_in_file
+    file_path = os.path.join("farm", "data", "animals.json")
+    
+    animals = load_data_from_file(file_path)
+    
+    try:
+        animal_id = int(input("Digite o ID do animal que deseja deletar: "))
+        
+        for i, animal in enumerate(animals):
+            if animal['id'] == animal_id:
+                confirm = input(f"Tem certeza que deseja deletar o animal ID {animal_id} (s/n)? ").strip().lower()
+                if confirm == 's':
+                    animals.pop(i)
+                    overwrite_data_in_file(file_path, animals)
+                    print("Animal deletado com sucesso!")
+                else:
+                    print("Operação cancelada.")
                 break
         else:
             print("Animal com o ID fornecido não encontrado.")

@@ -1,65 +1,47 @@
-import os
-
-from time import sleep
-from files import save_data_to_file, generate_id
-from utils.logs import INPUTS_REGISTERED
-
-def register_input():
-    file_path = os.path.join("farm", "data", "inputs.json")
-
-    print(INPUTS_REGISTERED)
-
-    try: 
+def show_choice_inputs():
+    from utils.terminal import clear_terminal, bars_line
+    from utils.terminal import press_enter_to_continue
+    clear_terminal()
+    bars_line("-", 22)
+    print("Gerenciamento de Insumos")
+    bars_line("-", 22)
+    print("[1] Cadastrar Insumo")
+    print("[2] Listar Insumos")
+    print("[3] Atualizar Insumo")
+    print("[4] Deletar Insumo")
+    print("[5] Pesquisar Insumo")
+    print("[6] Controlar Estoque")
+    print("[0] Voltar")
+    bars_line("-", 22)
+    choice = input("Escolha uma opção: ").strip()
     
-        name = str(input("Digite o nome do insumo: ")).strip()
-        quantity = float(input("Digite a quantidade disponivel no estoque: "))
-        
-        if quantity <= 0:
-            raise ValueError("a quantidade disponivel no estoque é menor que 0 ?")
-        
-        unit = str(input("Digite a unidade de medida associada à quantidade: "))
-        
-        category = input("Digite o status do animal [feed/seed/medicine]: ").strip().lower()
-        if category not in ["feed", "seed", "medicine"]:
-            raise ValueError("Status inválido")
-        
-        inputs_data = {
-        'id': generate_id(file_path),
-        'name': name,
-        'quantity': quantity,
-        'unit': unit,
-        'category': category
-        }
-        
-        save_data_to_file(file_path, inputs_data)
-        print("Insumo cadastrado com sucesso!")
-
-
-    except ValueError as e:
-        print(f"\n Erro: {e}")
-
-    except Exception as e2:
-        print(f"\n Erro inesperado: {e2}")
-
-    
-
-    sleep(1.5)
-
-def list_inputs():
-    from files import load_data_from_file
-    file_path = os.path.join("farm", "data", "inputs.json")
-    
-    inputs = load_data_from_file(file_path)
-    
-    if not inputs:
-        print("\n Nenhum insumo cadastrado.")
-    else:
-        print("\n Lista de Insumos Cadastrados:\n")
-        for inp in inputs:
-            print(f"ID: {inp['id']}")
-            print(f"Nome: {inp['name']}")
-            print(f"Quantidade em Estoque: {inp['quantity']:.1f} {inp['unit']}")
-            print(f"Categoria: {inp['category']}")
-            print("-"*30)
-    
-    sleep(1.5)
+    match choice:
+        case "1":
+            from inputs.manage_input import register_input
+            register_input()
+            press_enter_to_continue()
+        case "2":
+            from inputs.manage_input import list_inputs
+            list_inputs()
+            press_enter_to_continue()
+        case "3":
+            from inputs.manage_input import update_input
+            update_input()
+            press_enter_to_continue()
+        case "4":
+            from inputs.manage_input import delete_input
+            delete_input()
+            press_enter_to_continue()
+        case "5":
+            from inputs.manage_input import read_input
+            read_input()
+            press_enter_to_continue()
+        case "6":
+            from inputs.stock_control import control_stock
+            control_stock()
+            press_enter_to_continue()
+        case "0":
+            return
+        case _:
+            print("Opção inválida!")
+            press_enter_to_continue()
