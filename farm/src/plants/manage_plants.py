@@ -114,4 +114,75 @@ def list_plants():
         print("-"*30)
     
     sleep(2)
-   
+def delete_plants():
+    from files import load_data_from_file, overwrite_data_in_file
+    file_path = os.path.join("farm", "data", "plants.json")
+    
+    try:
+        plants = load_data_from_file(file_path)
+        plants_id = int(input("Digite o ID da plantação que deseja deletar: "))
+        
+        for i, inp in enumerate(plants):
+            if inp['id'] == plants_id:
+                confirm = input(f"Tem certeza que deseja deletar a plantação '{inp['name']}'? (s/n): ").strip().lower()
+                if confirm == 's':
+                    plants.pop(i)
+                    overwrite_data_in_file(file_path, plants)
+                    print("Plantação deletado com sucesso!")
+                else:
+                    print("Operação de deleção cancelada.")
+                break
+        else:
+            print("Insumo com o ID fornecido não encontrado.")
+    except ValueError as e:
+        print(f"\n Erro: {e}")
+    except Exception as e:
+        print(f"\n Erro inesperado: {e}")
+def update_plants():
+    from files import load_data_from_file, overwrite_data_in_file
+    file_path = os.path.join("farm", "data", "plants.json")
+    
+    try:
+        plants = load_data_from_file(file_path)
+        plant_id = int(input("Digite o ID da plantação que deseja atualizar: "))
+        
+        for plant in plants:
+            if plant['id'] == plant_id:
+                print(f"Atualizando plantação ID {plant_id}:")
+                
+                new_crop_type = input(f"Cultura ({plant['crop_type']}): ").strip()
+                if new_crop_type:
+                    plant['crop_type'] = new_crop_type
+                
+                new_area = input(f"Área ({plant['area']} ha): ").strip()
+                if new_area:
+                    area_value = float(new_area)
+                    if area_value < 0:
+                        raise ValueError("Área não pode ser negativa")
+                    plant['area'] = area_value
+                
+                new_planting_date = input(f"Data do Plantio ({plant['planting_date']}): ").strip()
+                if new_planting_date:
+                    plant['planting_date'] = validate_date_iso(new_planting_date)
+                
+                new_harvest_date = input(f"Data da Colheita ({plant['harvest_date']}): ").strip()
+                if new_harvest_date:
+                    plant['harvest_date'] = validate_date_iso(new_harvest_date)
+                
+                new_status = input(f"Status ({plant['status']}): ").strip().lower()
+                if new_status in ["planted","harvested","rotated","inactive"]:
+                    plant['status'] = new_status
+                elif new_status:
+                    raise ValueError("Status inválido")
+                
+                overwrite_data_in_file(file_path, plants)
+                print("Dados da plantação atualizados com sucesso!")
+                break
+        else:
+            print("Plantação com o ID fornecido não encontrado.")
+    except ValueError as e:
+        print(f"\n Erro: {e}")
+    except Exception as e:
+        print(f"\n Erro inesperado: {e}")
+    
+    sleep(1.5)
