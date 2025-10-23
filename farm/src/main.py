@@ -45,7 +45,7 @@ def main():
                 from movements.moviments import menu_movements
                 menu_movements()
             elif option == "5":
-                from register import generate_inputs_report
+                from reports import generate_inputs_report
                 generate_inputs_report()
             elif option == "0":
                 print("\nEncerrando sistema...")

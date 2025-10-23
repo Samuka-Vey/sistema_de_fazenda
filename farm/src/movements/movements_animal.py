@@ -35,39 +35,39 @@ def register_animal_movement():
     print(f"\nAnimal encontrado: {animal['species']} (Status atual: {animal['status']})")
     print("[1] Venda")
     print("[2] Falecimento")
-    opcao = input("Escolha o tipo de movimentação: ")
+    option = input("Escolha o tipo de movimentação: ")
 
-    if opcao == "1":
-        novo_status = "sold"
-        descricao = input("Descrição da venda: ")
-        comprador = input("Nome do comprador: ")
+    if option == "1":
+        new_status = "sold"
+        description = input("Descrição da venda: ")
+        buyer = input("Nome do comprador: ")
         try:
-            valor = float(input("Valor da venda (em R$): "))
+            value = float(input("Valor da venda (em R$): "))
         except ValueError:
             print("\nValor inválido! Movimentação cancelada.")
             sleep(1.5)
             return
-    elif opcao == "2":
-        novo_status = "dead"
-        descricao = input("Descrição do falecimento: ")
-        comprador = None
-        valor = 0.0
+    elif option == "2":
+        new_status = "dead"
+        description = input("Descrição do falecimento: ")
+        buyer = None
+        value = 0.0
     else:
         print("\nOpção inválida.")
         sleep(1.5)
         return
 
-    animal["status"] = novo_status
+    animal["status"] = new_status
     overwrite_data_in_file(animals_file, animals)
 
     movement = {
         "type": "animal",
         "animal_id": animal_id,
         "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "status": novo_status,
-        "description": descricao,
-        "buyer": comprador,
-        "value": valor,
+        "status": new_status,
+        "description": description,
+        "buyer": buyer,
+        "value": value,
     }
 
     save_data_to_file(movements_file, movement)

@@ -15,4 +15,4 @@ def bars_line(type_line, length=70):
         case "*":
             print("*" * length)
 def press_enter_to_continue():
-    input("\nPressione (ENTER) para continuar...")
+    input("\n✅ Pressione (ENTER) para continuar...")
