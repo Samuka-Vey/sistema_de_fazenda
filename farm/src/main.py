@@ -41,12 +41,12 @@ def main():
             elif option == "3":
                 from inputs.inputs import show_choice_inputs
                 show_choice_inputs()
-            elif option == "4": # Estamos fazendo agora
+            elif option == "4":
                 from movements.moviments import menu_movements
                 menu_movements()
-           
-            elif option == "5": # O que ainda falta a gente fazer
-                ...
+            elif option == "5":
+                from register import generate_inputs_report
+                generate_inputs_report()
             elif option == "0":
                 print("\nEncerrando sistema...")
                 sleep(1)
