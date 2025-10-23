@@ -51,7 +51,7 @@ def register_inputs_movements():
                 description_add = description()
 
             elif option_moviments == 2:
-                action = "saida"
+                action = "saída"
                 quantity = float(input("Quanto deseja remover?: "))
                 inputs["quantity"] = inputs["quantity"] - quantity
                 description_add = description()
@@ -60,7 +60,7 @@ def register_inputs_movements():
                     return
 
         else:
-            print("Opçao invalida!")
+            print("Opção inválida!")
 
     except ValueError:
         print("Algo não parece certo, reveja as informações.")

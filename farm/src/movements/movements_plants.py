@@ -21,33 +21,33 @@ def register_plants_movement():
         sleep(1.5)
         return
 
-    planta = None
+    plant = None
     for a in plants:
         if a["id"] == plant_id:
-            planta = a
+            plant = a
             break
 
-    if not planta:
+    if not plant:
         print(f"\nPlanta com ID {plant_id} não encontrada!")
         sleep(1.5)
         return
 
-    print(f"\nPlanta encontrada: {planta.get('crop_type', 'N/D')} (Status atual: {planta.get('status', 'N/D')})")
+    print(f"\nPlanta encontrada: {plant.get('crop_type', 'N/D')} (Status atual: {plant.get('status', 'N/D')})")
     print("[1] Plantada")
     print("[2] Colhida")
     print("[3] Cultura em rotação")
     print("[4] Inativa")
-    opcao = input("Escolha o tipo de movimentação: ").strip()
+    option = input("Escolha o tipo de movimentação: ").strip()
 
-    novo_status = None
-    descricao = ""
+    new_status = None
+    description = ""
     area = None
-    comprador = None
+    buyer = None
     price = None
 
-    if opcao == "1":
-        novo_status = "planted"
-        descricao = input("Descrição do novo plantio: ")
+    if option == "1":
+        new_status = "planted"
+        description = input("Descrição do novo plantio: ")
         try:
             area = float(input("Qual área plantada em hectares?: "))
         except ValueError:
@@ -55,9 +55,9 @@ def register_plants_movement():
             sleep(1.5)
             return
 
-    elif opcao == "2":
-        novo_status = "harvested"
-        descricao = input("Descrição da colheita: ")
+    elif option == "2":
+        new_status = "harvested"
+        description = input("Descrição da colheita: ")
         try:
             area = float(input("Digite a área colhida em hectares: "))
         except ValueError:
@@ -73,8 +73,8 @@ def register_plants_movement():
         if suboption == "1":
             try:
                 price = float(input("Digite o valor da venda em R$: "))
-                comprador = input("Digite o nome do comprador: ").strip()
-                novo_status = "sold"
+                buyer = input("Digite o nome do comprador: ").strip()
+                new_status = "sold"
             except ValueError:
                 print("\nValor inválido! Venda não aprovada.")
                 sleep(1.5)
@@ -84,30 +84,30 @@ def register_plants_movement():
         else:
             print("\nOpção não reconhecida. Colheita será registrada apenas como colhida.")
 
-    elif opcao == "3":
-        novo_status = "rotated"
-        descricao = input("Descreva os motivos da rotação de cultura: ")
+    elif option == "3":
+        new_status = "rotated"
+        description = input("Descreva os motivos da rotação de cultura: ")
 
-    elif opcao == "4":
-        novo_status = "inactive"
-        descricao = input("Explique por que a área está inativa: ")
+    elif option == "4":
+        new_status = "inactive"
+        description = input("Explique por que a área está inativa: ")
 
     else:
         print("\nOpção inválida.")
         sleep(1.5)
         return
 
-    planta["status"] = novo_status
+    plant["status"] = new_status
     overwrite_data_in_file(plants_file, plants)
 
     movement = {
         "type": "plant",
-        "planta_id": plant_id,
+        "plant_id": plant_id,
         "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "status": novo_status,
-        "description": descricao,
+        "status": new_status,
+        "description": description,
         "area": area,
-        "buyer": comprador,  
+        "buyer": buyer,  
         "price": price
     }
 
