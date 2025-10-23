@@ -1,0 +1,11 @@
+===== RELATÓRIO DE INSUMOS =====
+Data de geração: 23/10/2025 16:47:21
+================================
+
+ID: 1 | Nome: batata | Quantidade: 309039103111667.4 sacos | Categoria: seed
+ID: 2 | Nome: Milho | Quantidade: 123223.0 kg | Categoria: medicine
+ID: 3 | Nome: Milho | Quantidade: 124.0 saco | Categoria: seed
+ID: 4 | Nome: Tapioca | Quantidade: 8.154860999099995e+16 sacos | Categoria: medicine
+
+--------------------------------
+Total de insumos cadastrados: 4
