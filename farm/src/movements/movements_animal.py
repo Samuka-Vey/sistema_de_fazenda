@@ -2,10 +2,11 @@ import os
 from datetime import datetime
 from time import sleep
 from files import load_data_from_file, save_data_to_file, overwrite_data_in_file
+from utils.paths import get_data_path
 
 def register_animal_movement():
-    animals_file = os.path.join("farm", "data", "animals.json")
-    movements_file = os.path.join("farm", "data", "movements.json")
+    animals_file = get_data_path("animals.json")
+    movements_file = get_data_path("movements.json")
 
     animals = load_data_from_file(animals_file)
 

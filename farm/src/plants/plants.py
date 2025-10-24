@@ -1,17 +1,15 @@
 def show_choice_plants():
-    from utils.terminal import clear_terminal, bars_line
+    from utils.terminal import show_dashboard_header, show_options_module
     from utils.terminal import press_enter_to_continue
-    clear_terminal()
-    bars_line("-", 26)
-    print("Gerenciamento de Plantações")
-    bars_line("-", 26)
-    print("[1] Cadastrar Plantações")
-    print("[2] Listar Plantações")
-    print("[3] Atualizar Plantações")
-    print("[4] Pesquisar Plantações")
-    print("[5] Deletar Plantações")
-    print("[0] Voltar")
-    bars_line("-", 26)
+    show_dashboard_header("Gerenciamento de Plantações")
+    show_options_module({
+        "1": "Cadastrar Plantações",
+        "2": "Listar Plantações",
+        "3": "Atualizar Plantações",
+        "4": "Pesquisar Plantações",
+        "5": "Deletar Plantações",
+        "0": "Voltar"
+    })
     choice = input("Escolha uma opção: ").strip()
     
     match choice:

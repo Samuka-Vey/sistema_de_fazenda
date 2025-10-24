@@ -1,17 +1,18 @@
 def show_choice_animals():
-    from utils.terminal import clear_terminal, bars_line
+    from utils.terminal import show_dashboard_header, show_options_module
     from utils.terminal import press_enter_to_continue
-    clear_terminal()
-    bars_line("-", 24)
-    print("Gerenciamento de Animais")
-    bars_line("-", 24)
-    print("[1] Cadastrar Animal")
-    print("[2] Listar Animais")
-    print("[3] Atualizar Animal")
-    print("[4] Pesquisar Animal")
-    print("[5] Deletar Animal")
-    print("[0] Voltar")
-    bars_line("-", 20)
+    
+    show_dashboard_header("Gerenciamento de Animais")
+   
+    show_options_module({
+        "1": "Cadastrar Animal",
+        "2": "Listar Animais",
+        "3": "Atualizar Animal",
+        "4": "Pesquisar Animal",
+        "5": "Deletar Animal",
+        "0": "Voltar"
+    })
+    
     choice = input("Escolha uma opção: ").strip()
     
     match choice:

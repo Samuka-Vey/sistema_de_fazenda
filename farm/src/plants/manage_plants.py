@@ -2,6 +2,7 @@ import os
 from time import sleep
 from files import save_data_to_file, generate_id
 from datetime import datetime, timedelta
+from utils.paths import get_data_path
 def validate_date_iso(dateinput):
     try:
         
@@ -10,7 +11,7 @@ def validate_date_iso(dateinput):
     except ValueError:
         raise ValueError("A data deve ser no formato dd/mm/aaaa e ser uma data válida")   
 def register_plants():
-    file_path = os.path.join("farm", "data", "plants.json")
+    file_path = get_data_path("plants.json")
     
     
     try:

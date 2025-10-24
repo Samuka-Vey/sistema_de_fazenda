@@ -2,11 +2,12 @@ import os
 from time import sleep
 from files import save_data_to_file, generate_id
 from utils.message import ANIMAL_REGISTERED
+from utils.paths import get_data_path
 
+FILE_PATH = get_data_path("animals.json")
 
 def register_animal():
-    file_path = os.path.join("farm", "data", "animals.json")
-    
+
     print(ANIMAL_REGISTERED)
     
     try:
@@ -27,14 +28,14 @@ def register_animal():
             raise ValueError("Status inválido")
         
         animal_data = {
-            "id": generate_id(file_path),
+            "id": generate_id(FILE_PATH),
             "species": species,
             "age": age,
             "weight": weight,
             "status": status
         }
         
-        save_data_to_file(file_path, animal_data)
+        save_data_to_file(FILE_PATH, animal_data)
         print("\n Animal cadastrado com sucesso!")
         
     except ValueError as e:
@@ -45,8 +46,8 @@ def register_animal():
     sleep(1.5)
 def read_animal():
     from files import load_data_from_file
-    file_path = os.path.join("farm", "data", "animals.json")
-    animals = load_data_from_file(file_path)
+    FILE_PATH = os.path.join("farm", "data", "animals.json")
+    animals = load_data_from_file(FILE_PATH)
     search = input("Digite o id ou nome do animal: ")
     if not search:
         print("Entrada inválida")
@@ -68,9 +69,8 @@ def read_animal():
         
 def list_animals():
     from files import load_data_from_file
-    file_path = os.path.join("farm", "data", "animals.json")
     
-    animals = load_data_from_file(file_path)
+    animals = load_data_from_file(FILE_PATH)
     
     if not animals:
         print("\n Nenhum animal cadastrado.")
@@ -87,9 +87,8 @@ def list_animals():
     sleep(1.5)
 def update_animal():    
     from files import load_data_from_file, overwrite_data_in_file
-    file_path = os.path.join("farm", "data", "animals.json")
     
-    animals = load_data_from_file(file_path)
+    animals = load_data_from_file(FILE_PATH)
     
     try:
         animal_id = int(input("Digite o ID do animal que deseja atualizar: "))
@@ -116,7 +115,7 @@ def update_animal():
                 elif new_status:
                     raise ValueError("Status inválido")
                 
-                overwrite_data_in_file(file_path, animals)
+                overwrite_data_in_file(FILE_PATH, animals)
                 print("Dados do animal atualizados com sucesso!")
                 break
         else:
@@ -130,9 +129,8 @@ def update_animal():
     sleep(1.5)
 def delete_animal():
     from files import load_data_from_file, overwrite_data_in_file
-    file_path = os.path.join("farm", "data", "animals.json")
     
-    animals = load_data_from_file(file_path)
+    animals = load_data_from_file(FILE_PATH)
     
     try:
         animal_id = int(input("Digite o ID do animal que deseja deletar: "))
@@ -142,7 +140,7 @@ def delete_animal():
                 confirm = input(f"Tem certeza que deseja deletar o animal ID {animal_id} (s/n)? ").strip().lower()
                 if confirm == 's':
                     animals.pop(i)
-                    overwrite_data_in_file(file_path, animals)
+                    overwrite_data_in_file(FILE_PATH, animals)
                     print("Animal deletado com sucesso!")
                 else:
                     print("Operação cancelada.")

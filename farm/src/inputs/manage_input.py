@@ -3,10 +3,12 @@ import os
 
 from time import sleep
 from files import save_data_to_file, generate_id
+from utils.paths import get_data_path
 from utils.message import INPUTS_REGISTERED
 
+FILE_PATH = get_data_path("inputs.json")
+
 def register_input():
-    file_path = os.path.join("farm", "data", "inputs.json")
 
     print(INPUTS_REGISTERED)
 
@@ -25,14 +27,14 @@ def register_input():
             raise ValueError("Status inválido")
         
         inputs_data = {
-        'id': generate_id(file_path),
+        'id': generate_id(FILE_PATH),
         'name': name,
         'quantity': quantity,
         'unit': unit,
         'category': category
         }
         
-        save_data_to_file(file_path, inputs_data)
+        save_data_to_file(FILE_PATH, inputs_data)
         print("Insumo cadastrado com sucesso!")
 
 
@@ -47,9 +49,8 @@ def register_input():
     sleep(1.5)
 def list_inputs():
     from files import load_data_from_file
-    file_path = os.path.join("farm", "data", "inputs.json")
     
-    inputs = load_data_from_file(file_path)
+    inputs = load_data_from_file(FILE_PATH)
     
     if not inputs:
         print("\n Nenhum insumo cadastrado.")
@@ -65,8 +66,7 @@ def list_inputs():
     sleep(1.5)
 def read_inputs():
     from files import load_data_from_file
-    file_path = os.path.join("farm", "data", "inputs.json")
-    inputs = load_data_from_file(file_path)
+    inputs = load_data_from_file(FILE_PATH)
     search = input("Digite o id ou nome do insumo: ")
     if not search:
         print("Entrada inválida")
@@ -87,10 +87,9 @@ def read_inputs():
 
 def update_input():
     from files import load_data_from_file, overwrite_data_in_file
-    file_path = os.path.join("farm", "data", "inputs.json")
     
     try:
-        inputs = load_data_from_file(file_path)
+        inputs = load_data_from_file(FILE_PATH)
         input_id = int(input("Digite o ID do insumo que deseja atualizar: "))
         
         for inp in inputs:
@@ -117,7 +116,7 @@ def update_input():
                 inp['unit'] = unit
                 inp['category'] = category
                 
-                overwrite_data_in_file(file_path, inputs)
+                overwrite_data_in_file(FILE_PATH, inputs)
                 print("Dados do insumo atualizados com sucesso!")
                 break
         else:
@@ -128,10 +127,9 @@ def update_input():
         print(f"\n Erro inesperado: {e}")
 def delete_input():
     from files import load_data_from_file, overwrite_data_in_file
-    file_path = os.path.join("farm", "data", "inputs.json")
     
     try:
-        inputs = load_data_from_file(file_path)
+        inputs = load_data_from_file(FILE_PATH)
         input_id = int(input("Digite o ID do insumo que deseja deletar: "))
         
         for i, inp in enumerate(inputs):
@@ -139,7 +137,7 @@ def delete_input():
                 confirm = input(f"Tem certeza que deseja deletar o insumo '{inp['name']}'? (s/n): ").strip().lower()
                 if confirm == 's':
                     inputs.pop(i)
-                    overwrite_data_in_file(file_path, inputs)
+                    overwrite_data_in_file(FILE_PATH, inputs)
                     print("Insumo deletado com sucesso!")
                 else:
                     print("Operação de deleção cancelada.")

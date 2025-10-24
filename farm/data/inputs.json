@@ -1,12 +1,5 @@
 [
     {
-        "id": 1,
-        "name": "batata",
-        "quantity": 309039103111667.4,
-        "unit": "sacos",
-        "category": "seed"
-    },
-    {
         "id": 2,
         "name": "Milho",
         "quantity": 123223.0,
@@ -26,5 +19,12 @@
         "quantity": 8.154860999099995e+16,
         "unit": "sacos",
         "category": "medicine"
+    },
+    {
+        "id": 5,
+        "name": "Maçã",
+        "quantity": 100.0,
+        "unit": "sacos",
+        "category": "feed"
     }
 ]

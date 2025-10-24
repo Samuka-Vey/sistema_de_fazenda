@@ -1,18 +1,17 @@
 def show_choice_inputs():
-    from utils.terminal import clear_terminal, bars_line
+    from utils.terminal import show_dashboard_header, show_options_module
     from utils.terminal import press_enter_to_continue
-    clear_terminal()
-    bars_line("-", 22)
-    print("Gerenciamento de Insumos")
-    bars_line("-", 22)
-    print("[1] Cadastrar Insumo")
-    print("[2] Listar Insumos")
-    print("[3] Atualizar Insumo")
-    print("[4] Deletar Insumo")
-    print("[5] Pesquisar Insumo")
-    print("[6] Controlar Estoque")
-    print("[0] Voltar")
-    bars_line("-", 22)
+    show_dashboard_header("Gerenciamento de Insumos")
+    show_options_module({
+        "1": "Cadastrar Insumo",
+        "2": "Listar Insumos",
+        "3": "Atualizar Insumo",
+        "4": "Deletar Insumo",
+        "5": "Pesquisar Insumo",
+        "6": "Controlar Estoque",
+        "0": "Voltar"
+    })
+   
     choice = input("Escolha uma opção: ").strip()
     
     match choice:
