@@ -1,5 +1,5 @@
 import os
-import typing
+
 
 def clear_terminal():
     if os.name == 'nt':
@@ -23,7 +23,7 @@ def show_dashboard_header(title):
     print(f"{title:^70}")
     bars_line("=")
     
-def show_options_module(options: typing.Dict[str,str]):
+def show_options_module(options):
     for key, value in options.items():
         print(f"[{key}] {value}")
     bars_line("-")
