@@ -1,11 +1,16 @@
 
-from utils.terminal import press_enter_to_continue, clear_terminal
+from utils.terminal import press_enter_to_continue
+from utils.terminal import show_dashboard_header, show_options_module
+from utils.message import WELCOME_DISPLAY_MOVEMENTS
 def menu_movements():
-    print("\n=== Menu de Movimentações ===")
-    print("[1] Registrar Movimentação de Animal")
-    print("[2] Registrar Movimentação de Insumos")
-    print("[3] Registrar Movimentação de Plantas")
-    print("[0] Voltar ao Menu Principal")
+    show_dashboard_header(WELCOME_DISPLAY_MOVEMENTS, 85)
+    show_options_module({
+        "1": "Registrar Movimentação de Animal",
+        "2": "Registrar Movimentação de Insumos",
+        "3": "Registrar Movimentação de Plantas",
+        "0": "Voltar"
+    })
+   
 
     option = input("\nEscolha uma opção: ").strip()
 

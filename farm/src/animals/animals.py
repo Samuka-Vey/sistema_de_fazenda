@@ -1,9 +1,10 @@
 def show_choice_animals():
     from utils.terminal import show_dashboard_header, show_options_module
     from utils.terminal import press_enter_to_continue
-    
-    show_dashboard_header("Gerenciamento de Animais")
-   
+    from utils.message import WELCOME_DISPLAY_ANIMAL
+
+    show_dashboard_header(WELCOME_DISPLAY_ANIMAL, 98)
+
     show_options_module({
         "1": "Cadastrar Animal",
         "2": "Listar Animais",

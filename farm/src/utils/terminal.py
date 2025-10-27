@@ -17,12 +17,12 @@ def bars_line(type_line, length=70):
 def press_enter_to_continue():
     input("\n✅ Pressione (ENTER) para continuar...")
     
-def show_dashboard_header(title):
+def show_dashboard_header(title, bars_number = 70):
     clear_terminal()
-    bars_line("=")
+    bars_line("=", bars_number)
     print(f"{title:^70}")
-    bars_line("=")
-    
+    bars_line("=", bars_number)
+
 def show_options_module(options):
     for key, value in options.items():
         print(f"[{key}] {value}")

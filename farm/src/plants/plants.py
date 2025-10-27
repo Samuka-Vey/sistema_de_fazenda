@@ -1,7 +1,8 @@
 def show_choice_plants():
     from utils.terminal import show_dashboard_header, show_options_module
     from utils.terminal import press_enter_to_continue
-    show_dashboard_header("Gerenciamento de Plantações")
+    from utils.message import WELCOME_DISPLAY_PLANTATION
+    show_dashboard_header(WELCOME_DISPLAY_PLANTATION, 110)
     show_options_module({
         "1": "Cadastrar Plantações",
         "2": "Listar Plantações",

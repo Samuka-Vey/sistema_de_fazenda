@@ -21,7 +21,6 @@ def show_menu():
     print("[3] Gerenciar Insumos")
     print("[4] Registrar Movimentação")
     print("[5] Gerar Relatórios")
-    print("[6] Pesquisar Registro")
     print("[0] Sair")
     bars_line("-", 66)
 

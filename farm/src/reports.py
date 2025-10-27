@@ -3,17 +3,19 @@ import json
 from datetime import datetime
 from files import load_data_from_file  
 from utils.terminal import press_enter_to_continue
-
+from utils.terminal import show_dashboard_header, show_options_module
+from utils.message import WELCOME_DISPLAY_REPORTS
 
 def type_register(inputs, animals, plants):
     """
     Pergunta o critério e retorna as listas ordenadas (inputs, animals, plants).
     """
-    print(""" GERADOR DE RELATORIOS 
-            1. para ordenar por nome (A,Z)
-            2. para ordenar por ID (A,Z)
-            3. para ordenar em ordem decrescente 
-    """)
+    show_dashboard_header(WELCOME_DISPLAY_REPORTS, 85)
+    show_options_module({
+        "1": "Ordenar por nome (A-Z)",
+        "2": "Ordenar por ID (A-Z)",
+        "3": "Ordenar em ordem decrescente"
+    })
     try:
         choice2 = int(input("escolha o metodo de ordenamento: "))
     except ValueError:
@@ -52,7 +54,7 @@ def generate_inputs_report():
         plants  = load_data_from_file(json_path_plants)
 
         if not inputs and not animals and not plants:
-            print("Nenhum dado encontrado para gerar relatório.")
+            print("\nNenhum dado encontrado para gerar relatório. \n")
             return
     except FileNotFoundError:
         print("Arquivo não encontrado.")
@@ -61,11 +63,11 @@ def generate_inputs_report():
         print("Erro ao ler o arquivo JSON.")
         return
 
-    print(""" PARA QUEM GOSTARIA DE GERAR O RELATORIO
-          1. para animais
-          2. para insumos
-          3. para plantas
-    """)
+    show_options_module({
+        "1": "Gerar relatório de Animais",
+        "2": "Gerar relatório de Insumos",
+        "3": "Gerar relatório de Plantações"
+    })
     try:
         choice1 = int(input("resposta: "))
     except ValueError:

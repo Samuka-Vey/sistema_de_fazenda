@@ -16,3 +16,22 @@ ID: 1 | Cultura: Naruto | Área: 1000.0 | Plantio: 2000-05-25 | Colheita: 2000-0
 
 -----------------------------------
 Total de plantações cadastradas: 1
+
+===== RELATÓRIO DE ANIMAIS =====
+Data de geração: 27/10/2025 22:37:04
+================================
+
+ID: 1 | Espécie: Boi | Idade: 10.0 | Peso: 10.0 | Status: sold
+
+--------------------------------
+Total de animais cadastrados: 1
+
+===== RELATÓRIO DE PLANTAÇÕES =====
+Data de geração: 27/10/2025 22:40:19
+===================================
+
+ID: 1 | Cultura: Naruto | Área: 1000.0 | Plantio: 2000-05-25 | Colheita: 2000-08-23 | Status: planted
+ID: 2 | Cultura: milho | Área: 1000.0 | Plantio: 2000-12-10 | Colheita: 2001-04-09 | Status: planted
+
+-----------------------------------
+Total de plantações cadastradas: 2

@@ -6,5 +6,13 @@
         "planting_date": "2000-05-25",
         "harvest_date": "2000-08-23",
         "status": "planted"
+    },
+    {
+        "id": 2,
+        "crop_type": "milho",
+        "area": 1000.0,
+        "planting_date": "2000-12-10",
+        "harvest_date": "2001-04-09",
+        "status": "planted"
     }
 ]

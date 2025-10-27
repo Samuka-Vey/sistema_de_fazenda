@@ -1,14 +1,13 @@
 import os
 from time import sleep
 from files import save_data_to_file, generate_id
-from utils.message import ANIMAL_REGISTERED
 from utils.paths import get_data_path
+from utils.terminal import show_dashboard_header
 
 FILE_PATH = get_data_path("animals.json")
 
 def register_animal():
-
-    print(ANIMAL_REGISTERED)
+    show_dashboard_header("Cadastro de Animal")
     
     try:
         species = input("Digite a espécie do animal: ").strip()
