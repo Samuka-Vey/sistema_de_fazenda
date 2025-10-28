@@ -1,8 +1,11 @@
 import os
 from time import sleep
-from files import save_data_to_file, generate_id
+from files import save_data_to_file, generate_id, load_data_from_file, overwrite_data_in_file
 from datetime import datetime, timedelta
 from utils.paths import get_data_path
+
+file_path = get_data_path("plants.json")
+
 def validate_date_iso(dateinput):
     try:
         
@@ -11,7 +14,6 @@ def validate_date_iso(dateinput):
     except ValueError:
         raise ValueError("A data deve ser no formato dd/mm/aaaa e ser uma data válida")   
 def register_plants():
-    file_path = get_data_path("plants.json")
     
     
     try:
@@ -63,8 +65,6 @@ def register_plants():
 
     sleep(1.5)
 def read_plants():
-    from files import load_data_from_file 
-    file_path= os.path.join("farm","data","plants.json") 
     plants=load_data_from_file(file_path) 
 
     search = input("digite o id ou nome da plantação: ")
@@ -95,8 +95,6 @@ def read_plants():
                 print("-"*30)
                 sleep(1.5)
 def list_plants():
-    from files import load_data_from_file
-    file_path = os.path.join("farm", "data", "plants.json")
     
     plants = load_data_from_file(file_path)
     
@@ -115,33 +113,10 @@ def list_plants():
         print("-"*30)
     
     sleep(2)
-def delete_plants():
-    from files import load_data_from_file, overwrite_data_in_file
-    file_path = os.path.join("farm", "data", "plants.json")
     
-    try:
-        plants = load_data_from_file(file_path)
-        plants_id = int(input("Digite o ID da plantação que deseja deletar: "))
-        
-        for i, inp in enumerate(plants):
-            if inp['id'] == plants_id:
-                confirm = input(f"Tem certeza que deseja deletar a plantação '{inp['name']}'? (s/n): ").strip().lower()
-                if confirm == 's':
-                    plants.pop(i)
-                    overwrite_data_in_file(file_path, plants)
-                    print("Plantação deletado com sucesso!")
-                else:
-                    print("Operação de deleção cancelada.")
-                break
-        else:
-            print("Insumo com o ID fornecido não encontrado.")
-    except ValueError as e:
-        print(f"\n Erro: {e}")
-    except Exception as e:
-        print(f"\n Erro inesperado: {e}")
+    
 def update_plants():
-    from files import load_data_from_file, overwrite_data_in_file
-    file_path = os.path.join("farm", "data", "plants.json")
+    file_path = get_data_path("plants.json")
     
     try:
         plants = load_data_from_file(file_path)
@@ -178,6 +153,31 @@ def update_plants():
                 
                 overwrite_data_in_file(file_path, plants)
                 print("Dados da plantação atualizados com sucesso!")
+                break
+        else:
+            print("Plantação com o ID fornecido não encontrado.")
+    except ValueError as e:
+        print(f"\n Erro: {e}")
+    except Exception as e:
+        print(f"\n Erro inesperado: {e}")
+    
+    sleep(1.5)
+def delete_plants():
+    file_path = get_data_path("plants.json")
+    
+    try:
+        plants = load_data_from_file(file_path)
+        plant_id = int(input("Digite o ID da plantação que deseja deletar: "))
+        
+        for i, plant in enumerate(plants):
+            if plant['id'] == plant_id:
+                confirm = input(f"Tem certeza que deseja deletar a plantação ID {plant_id}? (s/n): ").strip().lower()
+                if confirm == 's':
+                    plants.pop(i)
+                    overwrite_data_in_file(file_path, plants)
+                    print("Plantação deletada com sucesso!")
+                else:
+                    print("Operação cancelada.")
                 break
         else:
             print("Plantação com o ID fornecido não encontrado.")

@@ -1,8 +1,8 @@
-def show_choice_animals():
-    from utils.terminal import show_dashboard_header, show_options_module
-    from utils.terminal import press_enter_to_continue
-    from utils.message import WELCOME_DISPLAY_ANIMAL
+from utils.terminal import show_dashboard_header, show_options_module, press_enter_to_continue
+from utils.message import WELCOME_DISPLAY_ANIMAL
+from animals.manage_animals import register_animal, list_animals, update_animal, read_animal, delete_animal
 
+def show_choice_animals():
     show_dashboard_header(WELCOME_DISPLAY_ANIMAL, 98)
 
     show_options_module({
@@ -18,23 +18,18 @@ def show_choice_animals():
     
     match choice:
         case "1":
-            from  animals.manage_animals import register_animal
             register_animal()
             press_enter_to_continue()
         case "2":
-            from animals.manage_animals import list_animals
             list_animals()
             press_enter_to_continue()
         case "3":
-            from animals.manage_animals import update_animal
             update_animal()
             press_enter_to_continue()
         case "4":
-            from animals.manage_animals import read_animal
             read_animal()
             press_enter_to_continue()
         case "5":
-            from animals.manage_animals import delete_animal
             delete_animal()
             press_enter_to_continue()
         case "0":

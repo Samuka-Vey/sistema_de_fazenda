@@ -2,11 +2,11 @@ import json
 import os
 from files import save_data_to_file
 from files import load_data_from_file
+from utils.paths import get_data_path
 
-
-
+FILE_PATH = get_data_path("inputs.json")
 def read_inputs():
-    file_path = os.path.join("farm", "data", "inputs.json")
+    file_path = FILE_PATH
 
     inputs = load_data_from_file(file_path)
 

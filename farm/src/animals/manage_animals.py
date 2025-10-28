@@ -1,8 +1,9 @@
 import os
 from time import sleep
-from files import save_data_to_file, generate_id
 from utils.paths import get_data_path
 from utils.terminal import show_dashboard_header
+from files import load_data_from_file, overwrite_data_in_file, save_data_to_file, generate_id
+
 
 FILE_PATH = get_data_path("animals.json")
 
@@ -44,7 +45,6 @@ def register_animal():
 
     sleep(1.5)
 def read_animal():
-    from files import load_data_from_file
     FILE_PATH = os.path.join("farm", "data", "animals.json")
     animals = load_data_from_file(FILE_PATH)
     search = input("Digite o id ou nome do animal: ")
@@ -67,7 +67,6 @@ def read_animal():
         print("Nenhum animal encontrado.")
         
 def list_animals():
-    from files import load_data_from_file
     
     animals = load_data_from_file(FILE_PATH)
     
@@ -85,7 +84,6 @@ def list_animals():
     
     sleep(1.5)
 def update_animal():    
-    from files import load_data_from_file, overwrite_data_in_file
     
     animals = load_data_from_file(FILE_PATH)
     
@@ -127,7 +125,6 @@ def update_animal():
     
     sleep(1.5)
 def delete_animal():
-    from files import load_data_from_file, overwrite_data_in_file
     
     animals = load_data_from_file(FILE_PATH)
     

@@ -47,5 +47,6 @@ farm/
 │   ├── plants.json
 │   ├── inputs.json
 │   └── movements.json
+|   └── report.txt
 │
 └── README.md

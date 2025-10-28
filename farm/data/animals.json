@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "species": "Macaco",
+        "age": 3.0,
+        "weight": 30.0,
+        "status": "active"
+    },
+    {
+        "id": 2,
+        "species": "Dragão",
+        "age": 10.0,
+        "weight": 100.0,
+        "status": "sold"
+    }
+]

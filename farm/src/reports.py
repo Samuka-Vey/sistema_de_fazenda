@@ -5,6 +5,7 @@ from files import load_data_from_file
 from utils.terminal import press_enter_to_continue
 from utils.terminal import show_dashboard_header, show_options_module
 from utils.message import WELCOME_DISPLAY_REPORTS
+from utils.paths import get_data_path
 
 def type_register(inputs, animals, plants):
     """
@@ -43,10 +44,10 @@ def type_register(inputs, animals, plants):
 
 
 def generate_inputs_report():
-    json_path_inputs  = os.path.join("farm", "data", "inputs.json")
-    json_path_animals = os.path.join("farm", "data", "animals.json")
-    json_path_plants  = os.path.join("farm", "data", "plants.json")
-    report_path       = os.path.join("farm", "data", "report.txt")
+    json_path_inputs  = get_data_path("inputs.json")
+    json_path_animals = get_data_path("animals.json")
+    json_path_plants  = get_data_path("plants.json")
+    report_path       = get_data_path("report.txt")
 
     try:
         inputs  = load_data_from_file(json_path_inputs)

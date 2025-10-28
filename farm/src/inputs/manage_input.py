@@ -2,15 +2,15 @@
 import os
 
 from time import sleep
-from files import save_data_to_file, generate_id
 from utils.paths import get_data_path
-from utils.message import INPUTS_REGISTERED
+from utils.message import WELCOME_DISPLAY_INPUTS
+from files import load_data_from_file, overwrite_data_in_file, save_data_to_file, generate_id
 
 FILE_PATH = get_data_path("inputs.json")
 
 def register_input():
 
-    print(INPUTS_REGISTERED)
+    print(WELCOME_DISPLAY_INPUTS)
 
     try: 
     
@@ -48,7 +48,6 @@ def register_input():
 
     sleep(1.5)
 def list_inputs():
-    from files import load_data_from_file
     
     inputs = load_data_from_file(FILE_PATH)
     
@@ -65,7 +64,6 @@ def list_inputs():
     
     sleep(1.5)
 def read_inputs():
-    from files import load_data_from_file
     inputs = load_data_from_file(FILE_PATH)
     search = input("Digite o id ou nome do insumo: ")
     if not search:
@@ -86,7 +84,6 @@ def read_inputs():
         print("Nenhum insumo encontrado.")
 
 def update_input():
-    from files import load_data_from_file, overwrite_data_in_file
     
     try:
         inputs = load_data_from_file(FILE_PATH)
@@ -126,7 +123,6 @@ def update_input():
     except Exception as e:
         print(f"\n Erro inesperado: {e}")
 def delete_input():
-    from files import load_data_from_file, overwrite_data_in_file
     
     try:
         inputs = load_data_from_file(FILE_PATH)

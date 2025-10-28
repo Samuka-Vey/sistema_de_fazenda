@@ -35,4 +35,6 @@ def generate_id(file_path):
     data = load_data_from_file(file_path)
     if not data:
         return 1
-    return data[-1].get('id', 0) + 1
+    else:
+        last_id = max(item.get("id", 0) for item in data)
+        return last_id + 1

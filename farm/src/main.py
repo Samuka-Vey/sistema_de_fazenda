@@ -1,5 +1,4 @@
 '''
-
 Marcos Samuel Cornelio Barros [Matricula: 2025027554]
 João Pedro Aguiar Teixeira [Matricula: 2025012506]
 David de Carvalho Santos [Matrícula: 2025012373]
@@ -9,20 +8,26 @@ Bruno Vinicius dos Reis Souza [Matricula:2025034595]
 
 from time import sleep
 from utils.message import WELCOME
-from utils.terminal import bars_line, clear_terminal
+from utils.terminal import bars_line, clear_terminal, show_options_module
+from animals.animals import show_choice_animals
+from plants.plants import show_choice_plants
+from inputs.inputs import show_choice_inputs
+from movements.moviments import menu_movements
+from reports import generate_inputs_report
+
 def show_menu():
     clear_terminal()
     bars_line("*", 66)
     print(WELCOME)
-
-    bars_line("-", 66)
-    print("[1] Gerenciar Animais")
-    print("[2] Gerenciar Plantações")
-    print("[3] Gerenciar Insumos")
-    print("[4] Registrar Movimentação")
-    print("[5] Gerar Relatórios")
-    print("[0] Sair")
-    bars_line("-", 66)
+    show_options_module({
+        "1": "Gerencia Animais",
+        "2": "Gerencia Plantações",
+        "3": "Gerencia Insumos",
+        "4": "Gerencia Movimentações",
+        "5": "Gerar Relatório de Insumos",
+        "0": "Sair"
+    })
+    bars_line("*", 66)
 
 def main():
     while True:
@@ -32,19 +37,14 @@ def main():
             option = input("\nEscolha uma opção: ").strip()
             
             if option == "1":
-                from animals.animals import show_choice_animals
                 show_choice_animals()
             elif option == "2":
-                from plants.plants import show_choice_plants
                 show_choice_plants()
             elif option == "3":
-                from inputs.inputs import show_choice_inputs
                 show_choice_inputs()
             elif option == "4":
-                from movements.moviments import menu_movements
                 menu_movements()
             elif option == "5":
-                from reports import generate_inputs_report
                 generate_inputs_report()
             elif option == "0":
                 print("\nEncerrando sistema...")
